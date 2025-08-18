@@ -7,7 +7,7 @@ public class VariableTask01 {
 		double myScore = 0.0;
 		char grade1 = ' ', grade2 = ' ', grade3 = ' ';
 		float time = 0.0F, mygrade4 = 107L;
-		String myMessage = " ";
+		String myMessage = "";
 		
 		num1 = 5;
 		num2 = 98590;
