@@ -89,7 +89,9 @@ public class ArrayTask01 {
 		}
 		avg = total / inputMaxNumber;
 		System.out.printf("총 합계는 %d, 평균 값은 %d 입니다.", total, avg);
-	}
 	
+		sc.close();
+	}
 }
+
 // 알고리즘 -문제를 해결해내가는 과정

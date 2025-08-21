@@ -12,5 +12,7 @@ public class ArrayTest {
 		for (int i = 0; i < arData1.length; i++) {
 			System.out.println(arData1[i]);
 		}
+		System.out.println(arData2);
+		System.out.println(arData3);
 	}
 }
