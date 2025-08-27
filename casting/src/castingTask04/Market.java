@@ -20,46 +20,49 @@ public class Market {
 		if (products.length == 0 ) {
 			System.out.println("판매할 상품이 없습니다.");
 		} else {
-			for(Product product1: products) {
-				String productName = product1.getName();
-				int productCount = product1.getCount();
-				int productPrice = product1.getPrice() * userCount;
+			Product selectProduct = null;
+			for(Product product: products) {			
+				String productName = product.getName();
 				if(productName.equals(input)) {
-					if (!productName.equals(input)){
-						if(!isNameSame) isNameSame = false;
-					} else {
-						isNameSame = true;
-					}
-					if (productCount > userCount) {
-						if(!isCountMin) isCountMin = false;
-					} else if(productCount == 0) {
-						isCountMin = false;
-					} else {
-						isCountMin = true;
-					}
-					if (isNameSame && isCountMin) {
-						if (user.getMoney() > productPrice) {
-							int disCount = user instanceof MarketMember ? 30 : 5;
-//							원래가격 - (원래가격 * (할인율 / 100))
-							if(!giveCoupon(user)) { // 	아닐 때		
-								int price = productPrice - (productPrice *(disCount / 100));
-								int point = user instanceof MarketMember ? product1.getPrice() *(10 / 100) : product1.getPrice() *(10 / 100);
-								insertPoint(user, point);
-								user.setMoney(user.getMoney() - price);
-							} 
-							product1.setCount(product1.getCount() - userCount);
-							System.out.printf("%s님이 %s을 구매 완료하였습니다. 잔액: %d",user.getName(), product1.getName(), user.getMoney());
-						} else {
-							System.out.println("잔액이 부족합니다.");
-						}
-					}					
 					
-					if (!isNameSame) System.out.printf("%s님, 이름이 일치하는 상품이 없습니다.\n", user.getName());
-					if (!isCountMin) System.out.printf("%s님, 남은 수량이 부족합니다.\n", user.getName());
+					selectProduct = product;
+					break;
+				} else {
+					System.out.printf("%s님, 이름이 일치하는 상품이 없습니다.\n", user.getName());
 				}
-				
 			}
+			
+			if(selectProduct != null) {
+				int productCount = selectProduct.getCount();
+				
+				int productPrice = selectProduct.getPrice() * userCount;
+				isCountMin = productCount >= userCount ? true : false;
+				
+//				System.out.println(user.getName());
+//				System.out.printf("%b 결과",isCountMin);
+				if (isCountMin) {
+					if (user.getMoney() > productPrice) {
+						int disCount = user instanceof MarketMember ? 30 : 5;
+//							원래가격 - (원래가격 * (할인율 / 100))
+						if(!giveCoupon(user)) { // 	아닐 때		
+							int price = productPrice - (productPrice *(disCount / 100));
+							int point = user instanceof MarketMember ? selectProduct.getPrice() *(10 / 100) : selectProduct.getPrice() *(10 / 100);
+							insertPoint(user, point);
+							user.setMoney(user.getMoney() - price);
+						} 
+						selectProduct.setCount(selectProduct.getCount() - userCount);
+						System.out.printf("%s님이 %s을 구매 완료하였습니다. 잔액: %d \n",user.getName(), selectProduct.getName(), user.getMoney());
+					} else {
+						System.out.println("잔액이 부족합니다.");
+					}
+				}
+				if(!isCountMin) System.out.printf("%s님, 재고가 부족합니다. \n", user.getName());
+			} else {
+				System.out.printf("%s님, 상품이 없습니다. \n", user.getName());
+			}
+			
 		}
+			
 	}
 	private void insertProduct(String name, int price, int firstCount) {
 		boolean isSame = false;

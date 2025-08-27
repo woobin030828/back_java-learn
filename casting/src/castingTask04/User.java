@@ -15,7 +15,6 @@ class User {
 		this.coupon = coupon;
 	}
 	void buy(String productName, int count) {
-		System.out.println(productName);
 		market.sell(this, productName, count);
 	}
 	
