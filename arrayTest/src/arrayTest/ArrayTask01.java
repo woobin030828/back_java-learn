@@ -66,6 +66,11 @@ public class ArrayTask01 {
 			System.out.printf("숫자를 입력하세요 %d 개째 : ", i + 1);
 			inputNumber = sc.nextInt();
 			arData5[i] = inputNumber;
+			
+			if(i == 0) {
+				max = arData5[i];
+				min = arData5[i];
+			}
 			if(arData5[i] > max) {
 				max = arData5[i];
 			}

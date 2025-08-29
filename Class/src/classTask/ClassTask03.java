@@ -43,9 +43,11 @@ class MinMax {
 
 public class ClassTask03 {
 	public static void main(String[] args) {
-		Biggersmaller bs = new Biggersmaller(77, 5);
-//		MinMax mm = new MinMax(bs);
+		
+		Biggersmaller bs = new Biggersmaller(66, 42);
 		MinMax mm = bs.minmax();
+		
+//		MinMax mm = new MinMax(bs);
 		
 		System.out.printf("최대값: %d, 최소값: %d", mm.min, mm.max);
 	}

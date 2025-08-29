@@ -1,7 +1,11 @@
 package anonymousTask02;
 
+import java.util.Scanner;
+
 public class AnonymousTask02 {
 	public static void main(String[] args) {
+		String inputMessage = "영문자를 입력하세요 (ex.abadcdCDswdWDQS01242DWSDsdsa) : ", inputString = "", outputMessage = "결과 : %s", outputString = "";
+		Scanner sc = new Scanner(System.in);
 		MyInter myInter = new MyInter() {
 //			람다식 문법
 			@Override
@@ -21,18 +25,31 @@ public class AnonymousTask02 {
 //			}			
 			@Override
 			public String changeLetter(String str) {
-				int asciiKey = 'a' - 'A';
 				boolean isBigger = false;
+				boolean isLetter = false;
 				String result = "";
-				char resultChar = ' ';
+				String resultChar = "";
 				
 				for(int i = 0; i < str.length(); i++) {
 					if(str.charAt(i) >= 'a' && str.charAt(i) <= 'z') {
 						isBigger = true;
+						isLetter = true;
 					} else if (str.charAt(i) >= 'A' && str.charAt(i) <= 'Z') {
 						isBigger = false;
+						isLetter = true;
+					} else {
+						isLetter = false;
 					}
-					resultChar = isBigger ? (char)(str.charAt(i) - asciiKey) : (char)(str.charAt(i) + asciiKey);
+					
+					if (isLetter) {						
+						if(isBigger) {
+							resultChar = String.valueOf(str.charAt(i)).toUpperCase();
+						} else {
+							resultChar = String.valueOf(str.charAt(i)).toLowerCase();
+						}
+					} else {
+						resultChar = String.valueOf(str.charAt(i));
+					}
 					
 					result += resultChar;
 				}
@@ -40,6 +57,11 @@ public class AnonymousTask02 {
 			}
 		};
 		myInter.deleteC("ABCD");
-		System.out.println(myInter.changeLetter("asdadsDSDDaasdaDSDDA"));
+		
+		System.out.println(inputMessage);
+		inputString = sc.next();
+		
+		outputString = myInter.changeLetter(inputString);
+		System.out.printf(outputMessage, outputString);
 	}
 }
