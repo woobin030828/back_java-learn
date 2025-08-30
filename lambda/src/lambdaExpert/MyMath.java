@@ -1,46 +1,71 @@
 package lambdaExpert;
 
+import java.util.Scanner;
+
 public class MyMath {
 //	연사자를 1개 전달 받아서 알맞게 연산하도록 메서드를 구현
 	public static Calc calcuator(String oper) {
-		
-//		수식 먼저 분리
-		OperCheck opercheck = (str) -> {
-			String[] stringArr = str.split("\\+|\\-");
-			String[] result = new String[stringArr.length];
-			
-			for(int i = 0; i < result.length; i++) {
-				result[i] = stringArr[i].replaceAll(" ", "");
+		Calc calc = (num1, num2) -> {
+			if(oper.equals("+")) {
+				return num1 + num2;
+			} else {
+				return num1 - num2;
+			}
+		};
+		return calc;
+	} 
+	
+	public static void main(String[] args) {
+		OperCheck operCheck = str -> { // str = 1 + 2 + 3
+			String[] temp = str.split(" "); // [" ",""]
+			String[] result = new String[temp.length / 2];
+
+			for(int i = 0; i < temp.length; i++) {
+				String cString = temp[i].trim();
+				if (i % 2 != 0){
+					result[i/2] = cString;
+				}
 			}
 			
 			return result;
 		};
-		
-		String[] strArr = opercheck.getOpers(oper);
-		String resultTest = "";
-		for (int i = 0; i < strArr.length; i++) {
-			if(i == strArr.length - 1) {
-				resultTest += strArr[i];
-			} else {
-				resultTest = strArr[i] + ", ";
-			}
-			
-		}
-		System.out.println(resultTest);
-//		calc를 객체화 + 메서드 채우기
-		
-		
-		return null;
-	} 
-	
-	public static void main(String[] args) {		
-//		사용자가 수식을 입력
-		
+		Scanner sc = new Scanner(System.in);
+		int result = 0;
 		MyMath myMath = new MyMath();
-		myMath.calcuator("1 + 3");
+		String[] opers = null, temps = null;
+		int[] numbers = null;
+		int cInt = 0;
+		String inputMessage1 = "수식을 입력하세요 : ", inputString = "", oper = "";
+
+//		사용자가 수식을 입력
+		System.out.printf(inputMessage1);
+		inputString = sc.nextLine();
 		
-//		전체 수식에서 연산자만 분리하여 계산 후 출력
+		opers = operCheck.getOpers(inputString);
+		temps = inputString.split(" ");
+		numbers = new int[opers.length + 1];
 		
+		for(int i = 0; i < temps.length; i++) {
+			if (i % 2 == 0){
+				cInt = Integer.parseInt(temps[i]);
+				numbers[i / 2] = cInt;
+			}
+		}
+		
+		
+		//		전체 수식에서 연산자만 분리하여 계산 후 출력 
+		result = numbers[0];
+		for(int i = 0; i < numbers.length - 1; i++) {
+			if (i != numbers.length - 1) {
+				oper = opers[i];
+			}
+			System.out.printf("중간 계산 %d %s %d \n", result, oper, numbers[i + 1]);
+			result = myMath.calcuator(oper).calc(result, numbers[i + 1]);
+		}
+		
+		System.out.printf("결과: %d \n", result);
+		
+		sc.close();
 	}
 }
 
