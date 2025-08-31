@@ -8,8 +8,14 @@ public class MyMath {
 		Calc calc = (num1, num2) -> {
 			if(oper.equals("+")) {
 				return num1 + num2;
-			} else {
+			} else if (oper.equals("-")){
 				return num1 - num2;
+			} else if (oper.equals("*")) {
+				return num1 * num2;
+			} else if (oper.equals("/")) {
+				return num1 / num2;
+			} else {
+				return num1 + num2;
 			}
 		};
 		return calc;
@@ -51,8 +57,7 @@ public class MyMath {
 				numbers[i / 2] = cInt;
 			}
 		}
-		
-		
+
 		//		전체 수식에서 연산자만 분리하여 계산 후 출력 
 		result = numbers[0];
 		for(int i = 0; i < numbers.length - 1; i++) {
