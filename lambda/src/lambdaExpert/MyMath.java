@@ -24,7 +24,7 @@ public class MyMath {
 	public static void main(String[] args) {
 		OperCheck operCheck = str -> { // str = 1 + 2 + 3
 			String[] temp = str.split(" "); // [" ",""]
-			String[] result = new String[temp.length / 2];
+			String[] result = new String[(temp.length - 1) / 2];
 
 			for(int i = 0; i < temp.length; i++) {
 				String cString = temp[i].trim();
@@ -58,7 +58,7 @@ public class MyMath {
 			}
 		}
 
-		//		전체 수식에서 연산자만 분리하여 계산 후 출력 
+//		전체 수식에서 연산자만 분리하여 계산 후 출력 
 		result = numbers[0];
 		for(int i = 0; i < numbers.length - 1; i++) {
 			if (i != numbers.length - 1) {

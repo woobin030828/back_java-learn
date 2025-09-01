@@ -17,7 +17,7 @@ public class Sms {
 	      // 4 params(to, from, type, text) are mandatory. must be filled
 	      HashMap<String, String> params = new HashMap<String, String>();
 	      params.put("to", "01062618622");
-	      params.put("from", "01072557854");
+	      params.put("from", "01000000000");
 	      params.put("type", "SMS");
 	      params.put("text", "형님 사랑합니다");
 	      params.put("app_version", "text app 1.2"); // application name and version
