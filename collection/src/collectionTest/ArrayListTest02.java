@@ -1,4 +1,4 @@
-package collection;
+package collectionTest;
 
 import java.util.ArrayList;
 
@@ -16,7 +16,8 @@ public class ArrayListTest02<T> {
 			System.out.println(datas);
 			if(datas.contains(50)) datas.add(datas.indexOf(50) + 1, 500);
 			if(datas.contains(90)) datas.set(datas.indexOf(90), 9);
-			if(datas.contains(80)) datas.remove(datas.indexOf(80));
+//			정수 -> 정수 / wrapper Class
+			if(datas.contains(80)) datas.remove(Integer.valueOf(80));
 			
 		} catch (IndexOutOfBoundsException e) {
 			System.out.println("ArrayList02 예외 발생");
