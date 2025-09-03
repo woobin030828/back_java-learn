@@ -7,9 +7,6 @@ public class User {
 	private String id;
 	private String name, password, phone;
 	
-	
-	
-	
 	public User() {;}
 	public User(String id, String name, String password, String phone) {
 		this.id = id;
