@@ -1,4 +1,4 @@
-package streamTest;
+package streamTest.forEachTest;
 
 import java.util.ArrayList;
 import java.util.stream.IntStream;

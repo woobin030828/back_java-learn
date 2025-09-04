@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import streamTest.mapTest.User;
+
 public class JsonArrayListTest {
 	public static void main(String[] args) {
 		User user1 = new User(1L, "홍길동", "개발자", 17);
